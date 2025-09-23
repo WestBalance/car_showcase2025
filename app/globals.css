@@ -1,26 +1,473 @@
-@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap");
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Manrope", sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* START: General styles */
+.max-width {
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.padding-x {
+  padding-left: 1.5rem; /* px-6 */
+  padding-right: 1.5rem;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.padding-y {
+  padding-top: 1rem; /* py-4 */
+  padding-bottom: 1rem;
 }
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.custom-btn {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  padding: 0.75rem 1.5rem; /* py-3 px-6 */
+  outline: none;
+}
+/* END: General styles */
+
+/* START: Hero styles */
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem; /* gap-5 */
+  position: relative;
+  z-index: 0;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.hero__title {
+  font-weight: 800; /* extrabold */
+  font-size: 50px;
+}
+
+.hero__subtitle {
+  font-size: 27px;
+  color: #1f1f1f; /* text-black-100 */
+  font-weight: 300;
+  margin-top: 1.25rem; /* mt-5 */
+}
+
+.hero__image-container {
+  flex: 1.5;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 100%;
+  height: 100vh;
+}
+
+.custom-container {
+  background-color: #2b59ff; /* это primary-blue */
+  color: #ffffff;           /* text-white */
+  border-radius: 9999px;    /* rounded-full */
+  margin-top: 2.5rem;       /* mt-10 = 2.5rem */
+}
+
+.hero__image {
+  position: relative;
+  width: 90%;
+  height: 590px;
+  z-index: 0;
+}
+
+.hero__image img {
+   object-fit: contain;
+   }
+
+.hero__image-overlay {
+  position: absolute;
+  top: -6rem;
+  right: -50%;
+  background-image: url('/hero-bg.png'); 
+  background-repeat: round;
+  z-index: -10;
+  width: 100%;
+  height: 590px;
+  overflow: hidden;
+}
+/* END: Hero styles */
+
+/* START: Home styles */
+.home__text-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0.625rem; /* gap-y-2.5 */
+  color: #1f1f1f; /* text-black-100 */
+}
+
+.home__filters {
+  margin-top: 3rem; /* mt-12 */
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+.home__filter-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.home__cars-wrapper {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  width: 100%;
+  gap: 2rem;
+  padding-top: 3.5rem;
+}
+
+.home__error-container {
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+/* END: Home styles */
+
+/* START: Car Card styles */
+.car-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem; /* p-6 */
+  justify-content: center;
+  align-items: flex-start;
+  color: #1f1f1f; /* text-black-100 */
+  background-color: #dbeafe; /* bg-primary-blue-100 */
+  border-radius: 1.5rem; /* rounded-3xl */
+  transition: 0.3s ease;
+}
+
+.car-card:hover {
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.car-card__content {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.car-card__content-title {
+  font-size: 22px;
+  line-height: 26px;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.car-card__price {
+  display: flex;
+  margin-top: 1.5rem;
+  font-size: 32px;
+  line-height: 38px;
+  font-weight: 800;
+}
+
+.car-card__price-dollar {
+  align-self: flex-start;
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: 600;
+}
+
+.car-card__price-day {
+  align-self: flex-end;
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: 500;
+}
+
+.car-card__image {
+  position: relative;
+  width: 100%;
+  height: 10rem; /* 40 */
+  margin: 0.75rem 0;
+  object-fit: contain;
+}
+
+.car-card__icon-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  color: gray;
+}
+
+.car-card__icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.car-card__icon-text {
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.car-card__btn-container {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.car-card:hover .car-card__btn-container {
+  display: flex;
+}
+/* END: Car Card styles */
+
+/* START: Car Details styles */
+.car-details__dialog-panel {
+  position: relative;
+  width: 100%;
+  max-width: 32rem; /* max-w-lg */
+  max-height: 90vh;
+  overflow-y: auto;
+  transform: none;
+  border-radius: 1rem;
+  background-color: #fff;
+  padding: 1.5rem;
+  text-align: left;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.car-details__close-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 10;
+  padding: 0.5rem;
+  background-color: #dbeafe;
+  border-radius: 9999px;
+}
+
+.car-details__main-image {
+  position: relative;
+  width: 100%;
+  height: 10rem;
+  background-image: url('/pattern.png'); 
+  background-size: cover;
+  background-position: center;
+  border-radius: 0.5rem;
+}
+/* END: Car Details styles */
+/* START: Custom Filter styles */
+.custom-filter__btn {
+  position: relative;
+  width: 100%;
+  min-width: 127px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: default;
+  border-radius: 0.5rem; /* rounded-lg */
+  background-color: #ffffff;
+  padding: 0.5rem 0.75rem; /* py-2 px-3 */
+  text-align: left;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  font-size: 0.875rem; /* sm:text-sm */
+  border: 1px solid #e5e7eb; /* border-gray-200 */
+}
+
+.custom-filter__options {
+  position: absolute;
+  margin-top: 0.25rem; /* mt-1 */
+  max-height: 15rem; /* max-h-60 */
+  width: 100%;
+  overflow: auto;
+  border-radius: 0.375rem; /* rounded-md */
+  background-color: #ffffff;
+  padding-top: 0.25rem; /* py-1 */
+  padding-bottom: 0.25rem;
+  font-size: 1rem; /* text-base */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  border: 1px solid rgba(0,0,0,0.05); /* ring-1 ring-black ring-opacity-5 */
+  outline: none;
+}
+/* END: Custom Filter styles */
+
+/* START: Footer styles */
+.footer {
+  display: flex;
+  flex-direction: column;
+  color: #1f1f1f; /* text-black-100 */
+  margin-top: 1.25rem; /* mt-5 */
+  border-top: 1px solid #f3f4f6; /* border-gray-100 */
+}
+
+.footer__links-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1.25rem; /* gap-5 */
+  padding: 2.5rem 4rem 2.5rem 1.5rem; /* sm:px-16 px-6 py-10 */
+}
+
+.footer__rights {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1.5rem; /* gap-6 */
+}
+
+.footer__links {
+  flex: 1 1 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end; /* md:justify-end */
+  gap: 5rem; /* gap-20 */
+  margin-top: 0; /* max-md:mt-10 можно добавить через медиазапрос */
+}
+
+.footer__link {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* gap-6 */
+  font-size: 1rem; /* text-base */
+  min-width: 170px;
+}
+
+.footer__copyrights {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 2.5rem; /* mt-10 */
+  border-top: 1px solid #f3f4f6; /* border-gray-100 */
+  padding: 2.5rem 4rem 2.5rem 1.5rem; /* sm:px-16 px-6 py-10 */
+}
+
+.footer__copyrights-link {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: flex-end; /* sm:justify-end */
+  justify-content: center; /* default */
+  gap: 2.5rem; /* gap-10 */
+  margin-top: 0; /* max-sm:mt-4 можно добавить через медиазапрос */
+}
+/* END: Footer styles */
+
+/* START: searchbar styles */
+.searchbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row; /* max-sm:flex-col через медиазапрос */
+  width: 100%;
+  position: relative;
+  gap: 1rem; /* max-sm:gap-4 */
+  max-width: 48rem; /* max-w-3xl */
+}
+
+.searchbar__item {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  width: 100%; /* max-sm:w-full */
+}
+
+.searchbar__input {
+  width: 100%;
+  height: 48px;
+  padding-left: 3rem; /* pl-12 */
+  padding-right: 1rem; 
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: #f5f5f5; /* bg-light-white */
+  border-radius: 9999px; /* rounded-r-full / max-sm:rounded-full */
+  outline: none;
+  cursor: pointer;
+  font-size: 0.875rem; /* text-sm */
+}
+/* END: searchbar styles */
+
+/* START: search manufacturer styles */
+.search-manufacturer {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%; /* max-sm:w-full */
+}
+
+.search-manufacturer__input {
+  width: 100%;
+  height: 48px;
+  padding-left: 3rem; /* pl-12 */
+  padding-right: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-radius: 9999px; /* rounded-l-full / max-sm:rounded-full */
+  background-color: #f5f5f5; /* bg-light-white */
+  outline: none;
+  cursor: pointer;
+  font-size: 0.875rem; /* text-sm */
+}
+
+.search-manufacturer__options {
+  position: absolute;
+  margin-top: 0.25rem; /* mt-1 */
+  max-height: 15rem; /* max-h-60 */
+  width: 100%;
+  overflow: auto;
+  border-radius: 0.375rem; /* rounded-md */
+  background-color: #ffffff;
+  padding-top: 0.25rem; 
+  padding-bottom: 0.25rem;
+  font-size: 1rem; /* text-base */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  border: 1px solid rgba(0,0,0,0.05); /* ring */
+  outline: none;
+}
+
+.search-manufacturer__option {
+  cursor: default;
+  user-select: none;
+  padding-top: 0.5rem; /* py-2 */
+  padding-bottom: 0.5rem;
+  padding-left: 2.5rem; /* pl-10 */
+  padding-right: 1rem; /* pr-4 */
+}
+/* END: search manufacturer styles */
