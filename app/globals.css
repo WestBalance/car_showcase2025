@@ -196,17 +196,161 @@
 /* END: Home styles */
 
 /* START: Car Card styles */
+/* Car Details */
+.car-details__dialog {
+  position: relative;
+  z-index: 10;
+}
+
+.car-details__backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+}
+
+.car-details__container {
+  position: fixed;
+  inset: 0;
+  overflow-y: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.car-details__inner {
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.car-details__dialog-panel {
+  position: relative;
+  width: 100%;
+  max-width: 32rem;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 1rem;
+  background-color: #fff;
+  padding: 1.5rem;
+  text-align: left;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.car-details__close-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 10;
+  padding: 0.5rem;
+  background-color: #dbeafe;
+  border-radius: 9999px;
+}
+
+.car-details__main-image {
+  position: relative;
+  width: 100%;
+  height: 10rem;
+  background-color: #dbeafe;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.car-details__gallery {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.car-details__gallery-image {
+  flex: 1;
+  position: relative;
+  height: 6rem;
+  background-color: #dbeafe;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.car-details__info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.car-details__title {
+  font-weight: 600;
+  font-size: 1.25rem;
+  text-transform: capitalize;
+}
+
+.car-details__specs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.car-details__spec {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  text-align: right;
+}
+
+.car-details__spec-key {
+  color: #6b7280;
+  text-transform: capitalize;
+}
+
+.car-details__spec-value {
+  font-weight: 600;
+  color: #1f1f1f;
+}
+
 .car-card {
   display: flex;
   flex-direction: column;
   padding: 1.5rem; /* p-6 */
-  justify-content: center;
   align-items: flex-start;
   color: #1f1f1f; /* text-black-100 */
-  background-color: #dbeafe; /* bg-primary-blue-100 */
+  background-color: #d0e0f5; /* bg-primary-blue-100 */
   border-radius: 1.5rem; /* rounded-3xl */
   transition: 0.3s ease;
+   max-width: 900px; /* элемент не станет шире 300px */
+  width: 100%;      /* но может сжиматься до ширины контейнера */
 }
+
+.car-card__btn {
+  width: 90%;
+  padding: 12px 0;
+  border-radius: 9999px;
+  background-color: #1d4ed8; /* primary blue */
+  color: white;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+}
+
+.car-card__btn-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.car-card__image-container:hover .car-card__btn-overlay {
+  opacity: 1;
+}
+
 
 .car-card:hover {
   background-color: #fff;
@@ -250,33 +394,64 @@
   font-weight: 500;
 }
 
-.car-card__image {
+.car-card__image-container {
   position: relative;
+  width: 35rem;
+  height: 35rem; /* или h-40 */
+  overflow: hidden;
+}
+
+.car-card__image {
   width: 100%;
-  height: 10rem; /* 40 */
-  margin: 0.75rem 0;
+  height: 100%;
   object-fit: contain;
 }
 
+.car-card__btn-overlay {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.car-card__image-container:hover .car-card__btn-overlay {
+  opacity: 1;
+}
+
+
 .car-card__icon-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* иконки + кнопка */
+  align-items: center;
   width: 100%;
-  color: gray;
+  margin-top: 1rem;
+  
+}
+
+.car-card__icons {
+  display: flex;
+  justify-content: space-between; /* равномерно распределяем иконки */
+  align-items: center;
+  width: 50%; /* можно подогнать ширину, чтобы иконки не растягивались на всю карточку */
+  gap: 5rem;
+  margin-left: 5rem;
 }
 
 .car-card__icon {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.25rem; /* расстояние между иконкой и текстом */
 }
 
 .car-card__icon-text {
   font-size: 14px;
   line-height: 17px;
+  text-align: center;
 }
+
 
 .car-card__btn-container {
   display: none;
