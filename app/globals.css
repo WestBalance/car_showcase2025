@@ -319,7 +319,7 @@
   background-color: #d0e0f5; /* bg-primary-blue-100 */
   border-radius: 1.5rem; /* rounded-3xl */
   transition: 0.3s ease;
-   max-width: 900px; /* элемент не станет шире 300px */
+   max-width: 300px; /* элемент не станет шире 300px */
   width: 100%;      /* но может сжиматься до ширины контейнера */
 }
 
@@ -396,8 +396,8 @@
 
 .car-card__image-container {
   position: relative;
-  width: 35rem;
-  height: 35rem; /* или h-40 */
+  width: 15rem;
+  height: 15rem; /* или h-40 */
   overflow: hidden;
 }
 
@@ -434,9 +434,9 @@
   display: flex;
   justify-content: space-between; /* равномерно распределяем иконки */
   align-items: center;
-  width: 50%; /* можно подогнать ширину, чтобы иконки не растягивались на всю карточку */
-  gap: 5rem;
-  margin-left: 5rem;
+  width: 20%; /* можно подогнать ширину, чтобы иконки не растягивались на всю карточку */
+  gap: 1rem;
+  margin-left: 0.25rem;
 }
 
 .car-card__icon {
