@@ -35,7 +35,7 @@ const CarCard = ({ car }: CarCardProps) => {
       {/* Car Image */}
       <div className="car-card__image-container">
         <Image
-          src="/hero.png"
+                  src="/public/cartoshow.png"
           alt="car model"
           fill
           priority

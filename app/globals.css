@@ -179,7 +179,7 @@
 
 .home__cars-wrapper {
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   width: 100%;
   gap: 2rem;
   padding-top: 3.5rem;
@@ -686,6 +686,50 @@
   cursor: pointer;
   font-size: 0.875rem; /* text-sm */
 }
+
+/* START: search button styles */
+.search-button {
+    position: relative;
+    margin-left: -12px; /* -ml-3 */
+    z-index: 10;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.search-button__image {
+    object-fit: contain;
+}
+
+/* Прячем на больших экранах */
+.search-button--mobile {
+    display: inline-flex;
+}
+
+.search-button--desktop {
+    display: none;
+}
+
+@media (min-width: 640px) {
+    .search-button--mobile {
+        display: none;
+    }
+
+    .search-button--desktop {
+        display: inline-flex;
+    }
+}
+
+/* Модель-иконка позиционируется в поле ввода */
+.searchbar__model-icon {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    margin-left: 1rem;
+}
+/* END: search button styles */
+
+
 /* END: searchbar styles */
 
 /* START: search manufacturer styles */
