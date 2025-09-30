@@ -35,7 +35,7 @@ const CarCard = ({ car }: CarCardProps) => {
       {/* Car Image */}
       <div className="car-card__image-container">
         <Image
-                  src="/public/cartoshow.png"
+                  src="/hero.png"
           alt="car model"
           fill
           priority
@@ -64,7 +64,7 @@ const CarCard = ({ car }: CarCardProps) => {
         </div>
         <div className="car-card__icon">
           <Image src="/gas.svg" width={20} height={20} alt="mpg" />
-          <p className="car-card__icon-text">{city_mpg} MPG</p>
+          <p className="car-card__icon-text">{car.fuel_type.toUpperCase()}</p>
         </div>
       </div>
 

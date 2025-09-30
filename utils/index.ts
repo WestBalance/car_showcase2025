@@ -1,8 +1,45 @@
-import { CarProps } from "@/types";
-import cars from '@/carData.json';
-export  async function fetchCars() {
-    return cars;
+import cars from "@/carData.json";
+import { CarProps, FilterProps } from "@/types";
+
+export async function fetchCars(filters: FilterProps): Promise<CarProps[]> {
+  const { manufacturer, year, model, fuel, limit } = filters;
+
+  let result = cars as CarProps[];
+
+  // Фильтр по manufacturer
+  if (manufacturer) {
+    result = result.filter((car) =>
+      car.make.toLowerCase().includes(manufacturer.toLowerCase())
+    );
+  }
+
+  // Фильтр по model
+  if (model) {
+    result = result.filter((car) =>
+      car.model.toLowerCase().includes(model.toLowerCase())
+    );
+  }
+
+  // Фильтр по fuel
+  if (fuel) {
+    result = result.filter((car) =>
+      car.fuel_type.toLowerCase() === fuel.toLowerCase()
+    );
+  }
+
+  // Фильтр по year
+  if (year) {
+    result = result.filter((car) => car.year === Number(year));
+  }
+
+  // Ограничение лимита
+  if (limit) {
+    result = result.slice(0, limit);
+  }
+
+  return result;
 }
+
 
 export const calculateCarRent = (city_mpg:number, year:number) => {
     const numericCityMpg =
@@ -27,4 +64,11 @@ export const calculateCarRent = (city_mpg:number, year:number) => {
 
 export const generateCarImageUrl = (car: CarProps, angle? : string) =>{
     const url = new URL('https://cdn.imagin.studio/getimage')
+}
+
+export const updateSearchParams=(type:string,value:string) =>{
+ const searchParams = new URLSearchParams(window.location.search);  
+        searchParams.set(type, value)
+        const newPathname=`${window.location.pathname}?${searchParams.toString()}`
+return newPathname
 }

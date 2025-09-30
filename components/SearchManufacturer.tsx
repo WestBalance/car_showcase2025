@@ -26,60 +26,55 @@ const SearchManufacturer = ({ manufacturer, setManufacturer }: SearchManufacture
 
   return (
     <div className="search-manufacturer">
-      <Combobox value={manufacturer}onChange={(value) => value && setManufacturer(value)}>
-        <div className="relative" style={{ width: "100%" }}>
-          {/* Кнопка с иконкой */}
-         <ComboboxButton className="search-manufacturer__button">
-             <Image src="/car-logo.svg" width={20} height={20} alt="Car Logo" />
-                </ComboboxButton>
+   <Combobox
+  value={manufacturer}
+  onChange={(value) => value && setManufacturer(value)}
+>
 
-          {/* Поле ввода */}
-          <ComboboxInput
-            className="search-manufacturer__input"
-            placeholder="Volkswagen"
-            displayValue={(manufacturer: string) => manufacturer}
-            onChange={(e) => setQuery(e.target.value)}
-          />
 
-          {/* Выпадающий список */}
-          <Transition
-            as={Fragment}
-            leave="transition ease-in duration-100"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-            afterLeave={() => setQuery("")}
-          >
-            <ComboboxOptions className="search-manufacturer__options">
-              {filteredManufacturers.length === 0 ? (
-                <div style={{ padding: "0.5rem 1rem", fontSize: "0.875rem", color: "#6b7280" }}>
-                  No results
-                </div>
-              ) : (
-                filteredManufacturers.map((item) => (
-                  <ComboboxOption
-                    key={item}
-                    value={item}
-                    className={({ active }) =>
-                      `search-manufacturer__option ${active ? "active" : ""}`
-                    }
-                  >
-                    {({ selected }) => (
-                      <span
-                        style={{
-                          fontWeight: selected ? "600" : "400",
-                          display: "block",
-                        }}
-                      >
-                        {item}
-                      </span>
-                    )}
-                  </ComboboxOption>
-                ))
+  <div className="relative" style={{ width: "100%" }}>
+    <ComboboxButton className="search-manufacturer__button">
+      <Image src="/car-logo.svg" width={20} height={20} alt="Car Logo" />
+    </ComboboxButton>
+
+    <ComboboxInput
+      className="search-manufacturer__input"
+      placeholder="Volkswagen"
+      displayValue={() => manufacturer} // отображаем выбранный manufacturer
+      onChange={(e) => setQuery(e.target.value)} // фильтруем список
+    />
+
+    <Transition
+      as={Fragment}
+      leave="transition ease-in duration-100"
+      leaveFrom="opacity-100"
+      leaveTo="opacity-0"
+      afterLeave={() => setQuery("")}
+    >
+      <ComboboxOptions className="search-manufacturer__options">
+        {filteredManufacturers.length === 0 ? (
+          <div style={{ padding: "0.5rem 1rem", fontSize: "0.875rem", color: "#6b7280" }}>
+            No results
+          </div>
+        ) : (
+          filteredManufacturers.map((item) => (
+            <ComboboxOption
+              key={item}
+              value={item}
+              className={({ active }) => `search-manufacturer__option ${active ? "active" : ""}`}
+            >
+              {({ selected }) => (
+                <span style={{ fontWeight: selected ? 600 : 400, display: "block" }}>
+                  {item}
+                </span>
               )}
-            </ComboboxOptions>
-          </Transition>
-        </div>
-      </Combobox>
+            </ComboboxOption>
+          ))
+        )}
+      </ComboboxOptions>
+    </Transition>
+  </div>
+</Combobox>
     </div>
   );
 };
